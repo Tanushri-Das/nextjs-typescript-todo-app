@@ -30,7 +30,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
     e.preventDefault();
 
     const id = taskId || Math.random().toString(36).substring(7);
-    const status = "To Do";
+    const status = "To Do" || "In Progress" ||  "Completed" ;
     const newTask = {
       id,
       title,
@@ -53,7 +53,8 @@ const TaskForm: React.FC<TaskFormProps> = ({
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="w-full max-w-sm mx-auto">
+      <h1 className='text-center mt-5 mb-2 text-xl font-semibold'>Add Task</h1>
+      <form onSubmit={handleSubmit} className="w-full max-w-sm mx-auto shadow-lg rounded-lg p-8">
         <div className="mb-4">
           <label
             htmlFor="title"
@@ -85,7 +86,21 @@ const TaskForm: React.FC<TaskFormProps> = ({
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           ></textarea>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="mb-4">
+          <label
+            htmlFor="description"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
+            Status
+          </label>
+          <div className="flex-col">
+          <input type="radio" name="" id="" /><span className="ms-1">To Do</span><br />
+          <input type="radio" name="" id="" /><span className="ms-1">In Progress</span><br />
+          <input type="radio" name="" id="" /><span className="ms-1">Completed</span>
+          </div>
+          
+        </div>
+        <div className="flex items-center justify-center">
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
