@@ -42,8 +42,9 @@ const TaskList: React.FC = () => {
   };
 
   return useObserver(() => (
-    <div>
-      <table className="min-w-full bg-white mt-8">
+    <div className="mt-8">
+      <h1 className="text-center mb-2 text-xl font-semibold">View All Task</h1>
+      <table className="min-w-full bg-white mt-4">
         <thead>
           <tr>
             <th className="py-2 px-4 border-b">Title</th>

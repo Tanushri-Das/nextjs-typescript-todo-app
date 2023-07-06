@@ -4,7 +4,7 @@ import TaskForm from '../components/TaskForm';
 
 const HomePage: React.FC = () => {
   return (
-    <div className=''>
+    <div className='mb-32'>
       <h1 className='text-center mt-9 mb-6 text-2xl font-semibold'>Task Management Application</h1>
       <TaskForm />
       <TaskList />
