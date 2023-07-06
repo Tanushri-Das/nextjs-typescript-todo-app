@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useObserver } from "mobx-react-lite";
 import { useTaskStore } from "../models/TaskModel";
@@ -12,17 +11,17 @@ const TaskList: React.FC = () => {
   const [editingTaskId, setEditingTaskId] = useState("");
   const [editedTitle, setEditedTitle] = useState("");
   const [editedDescription, setEditedDescription] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editedStatus, setEditedStatus] = useState("");
 
   const handleDelete = (taskId: string) => {
     taskStore.deleteTask(taskId);
   };
 
-  const handleEdit = (taskId: string, title: string, description: string) => {
+  const handleEdit = (taskId: string, title: string, description: string, status: string) => {
     setEditingTaskId(taskId);
     setEditedTitle(title);
     setEditedDescription(description);
-    setIsModalOpen(true);
+    setEditedStatus(status);
   };
 
   const handleUpdate = (taskId: string) => {
@@ -30,18 +29,16 @@ const TaskList: React.FC = () => {
       id: taskId,
       title: editedTitle,
       description: editedDescription,
-      status: taskStore.tasks.find((task) => task.id === taskId)?.status || "",
+      status: editedStatus,
     };
-    const task = taskStore.tasks.find((task) => task.id === taskId);
-    if (task) {
-      task.updateTask(updatedTask);
-    }
+
+    taskStore.updateTask(updatedTask);
 
     // Reset the editing state
     setEditingTaskId("");
     setEditedTitle("");
     setEditedDescription("");
-    setIsModalOpen(false);
+    setEditedStatus("");
   };
 
   return useObserver(() => (
@@ -59,15 +56,13 @@ const TaskList: React.FC = () => {
           {taskStore.tasks.map((task) => (
             <tr key={task.id}>
               <td className="py-2 px-4 border-b text-center">{task.title}</td>
-              <td className="py-2 px-4 border-b text-center">
-                {task.description}
-              </td>
+              <td className="py-2 px-4 border-b text-center">{task.description}</td>
               <td className="py-2 px-4 border-b text-center">{task.status}</td>
               <td className="py-2 px-4 border-b text-center">
                 <button
                   className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
                   onClick={() =>
-                    handleEdit(task.id, task.title, task.description)
+                    handleEdit(task.id, task.title, task.description, task.status)
                   }
                 >
                   Edit
@@ -84,33 +79,26 @@ const TaskList: React.FC = () => {
         </tbody>
       </table>
 
-      {/* <Modal
-        isOpen={isModalOpen}
-        onRequestClose={() => setIsModalOpen(false)}
+      <Modal
+        isOpen={Boolean(editingTaskId)}
+        onRequestClose={() => setEditingTaskId("")}
         contentLabel="Edit Task Modal"
-        className={{
-          base: styles.modal,
-          afterOpen: styles.modal_afterOpen,
-          beforeClose: styles.modal_beforeClose,
-          
-        }}
-        overlayClassName={{
-          base: styles.overlay,
-          afterOpen: styles.overlay_afterOpen,
-          beforeClose: styles.overlay_beforeClose,
-        }}
+        className={`${styles.modal} ${styles.afterOpen} ${styles.beforeClose}`}
+        overlayClassName={`${styles.overlay} ${styles.afterOpen} ${styles.beforeClose}`}
       >
         <div className="flex justify-between items-baseline">
-        <h2 className="font-semibold text-2xl mb-5">Edit Task</h2>
-        <FaTimes className="text-lg"/>
+          <h2 className="font-semibold text-2xl mb-5">Edit Task</h2>
+          <button
+            className="text-gray-500 hover:text-gray-800 focus:outline-none"
+            onClick={() => setEditingTaskId("")}
+          >
+            <FaTimes className="text-lg" />
+          </button>
         </div>
-        
+
         <form onSubmit={() => handleUpdate(editingTaskId)}>
           <div className="mb-4">
-            <label
-              htmlFor="editTitle"
-              className="block font-medium text-xl mb-2"
-            >
+            <label htmlFor="editTitle" className="block font-medium text-xl mb-2">
               Title
             </label>
             <input
@@ -122,10 +110,7 @@ const TaskList: React.FC = () => {
             />
           </div>
           <div className="mb-4">
-            <label
-              htmlFor="editDescription"
-              className="block font-medium text-xl mb-2"
-            >
+            <label htmlFor="editDescription" className="block font-medium text-xl mb-2">
               Description
             </label>
             <textarea
@@ -135,62 +120,46 @@ const TaskList: React.FC = () => {
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
             ></textarea>
           </div>
-
-          <button
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Update task
-          </button>
-        </form>
-      </Modal> */}
-
-<Modal
-  isOpen={isModalOpen}
-  onRequestClose={() => setIsModalOpen(false)}
-  contentLabel="Edit Task Modal"
-  className={`${styles.modal} ${styles.afterOpen} ${styles.beforeClose}`}
-  overlayClassName={`${styles.overlay} ${styles.afterOpen} ${styles.beforeClose}`}
->
-  <div className="flex justify-between items-baseline">
-    <h2 className="font-semibold text-2xl mb-5">Edit Task</h2>
-    <button
-      className="text-gray-500 hover:text-gray-800 focus:outline-none"
-      onClick={() => setIsModalOpen(false)}
-    >
-      <FaTimes className="text-lg" />
-    </button>
-  </div>
-  
-  <form onSubmit={() => handleUpdate(editingTaskId)}>
           <div className="mb-4">
-            <label
-              htmlFor="editTitle"
-              className="block font-medium text-xl mb-2"
-            >
-              Title
+            <label htmlFor="editStatus" className="block font-medium text-xl mb-2">
+              Status
             </label>
-            <input
-              id="editTitle"
-              type="text"
-              value={editedTitle}
-              onChange={(e) => setEditedTitle(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="editDescription"
-              className="block font-medium text-xl mb-2"
-            >
-              Description
-            </label>
-            <textarea
-              id="editDescription"
-              value={editedDescription}
-              onChange={(e) => setEditedDescription(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
-            ></textarea>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="editStatus"
+                  value="To Do"
+                  checked={editedStatus === "To Do"}
+                  onChange={() => setEditedStatus("To Do")}
+                />
+                <span className="ml-2">To Do</span>
+              </label>
+            </div>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="editStatus"
+                  value="In Progress"
+                  checked={editedStatus === "In Progress"}
+                  onChange={() => setEditedStatus("In Progress")}
+                />
+                <span className="ml-2">In Progress</span>
+              </label>
+            </div>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="editStatus"
+                  value="Completed"
+                  checked={editedStatus === "Completed"}
+                  onChange={() => setEditedStatus("Completed")}
+                />
+                <span className="ml-2">Completed</span>
+              </label>
+            </div>
           </div>
 
           <button
@@ -200,9 +169,7 @@ const TaskList: React.FC = () => {
             Update task
           </button>
         </form>
-</Modal>
-
-
+      </Modal>
     </div>
   ));
 };

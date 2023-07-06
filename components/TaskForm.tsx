@@ -17,6 +17,13 @@ const TaskForm: React.FC<TaskFormProps> = ({
   const task = taskId ? taskStore.tasks.find((task) => task.id === taskId) : null;
   const [title, setTitle] = useState(task?.title || propTitle || "");
   const [description, setDescription] = useState(task?.description || propDescription || "");
+  const [status, setStatus] = useState<string>(task?.status || "");
+
+  useEffect(() => {
+    if (task) {
+      setStatus(task.status);
+    }
+  }, [task]);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -26,11 +33,15 @@ const TaskForm: React.FC<TaskFormProps> = ({
     setDescription(e.target.value);
   };
 
+  const handleStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newStatus = e.target.value;
+    setStatus(newStatus);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     const id = taskId || Math.random().toString(36).substring(7);
-    const status = "To Do" || "In Progress" ||  "Completed" ;
     const newTask = {
       id,
       title,
@@ -41,6 +52,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
     if (taskId && task) {
       task.title = newTask.title;
       task.description = newTask.description;
+      task.status = newTask.status;
     } else {
       taskStore.addTask(newTask);
     }
@@ -48,18 +60,17 @@ const TaskForm: React.FC<TaskFormProps> = ({
     if (!taskId) {
       setTitle("");
       setDescription("");
+      setStatus("");
     }
   };
 
   return (
     <div>
-      <h1 className='text-center mt-5 mb-2 text-xl font-semibold'>Add Task</h1>
+      <h1 className="text-center mt-5 mb-2 text-xl font-semibold">Add Task</h1>
       <form onSubmit={handleSubmit} className="w-full max-w-sm mx-auto shadow-lg rounded-lg p-8">
+        {/* Title */}
         <div className="mb-4">
-          <label
-            htmlFor="title"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
+          <label htmlFor="title" className="block text-gray-700 text-sm font-bold mb-2">
             Title
           </label>
           <input
@@ -71,6 +82,8 @@ const TaskForm: React.FC<TaskFormProps> = ({
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
+
+        {/* Description */}
         <div className="mb-4">
           <label
             htmlFor="description"
@@ -86,20 +99,51 @@ const TaskForm: React.FC<TaskFormProps> = ({
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           ></textarea>
         </div>
+
+        {/* Status */}
         <div className="mb-4">
-          <label
-            htmlFor="description"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
+          <label htmlFor="status" className="block text-gray-700 text-sm font-bold mb-2">
             Status
           </label>
-          <div className="flex-col">
-          <input type="radio" name="" id="" /><span className="ms-1">To Do</span><br />
-          <input type="radio" name="" id="" /><span className="ms-1">In Progress</span><br />
-          <input type="radio" name="" id="" /><span className="ms-1">Completed</span>
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="status"
+                value="To Do"
+                checked={status === "To Do"}
+                onChange={handleStatusChange}
+              />
+              <span className="ml-2">To Do</span>
+            </label>
           </div>
-          
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="status"
+                value="In Progress"
+                checked={status === "In Progress"}
+                onChange={handleStatusChange}
+              />
+              <span className="ml-2">In Progress</span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="status"
+                value="Completed"
+                checked={status === "Completed"}
+                onChange={handleStatusChange}
+              />
+              <span className="ml-2">Completed</span>
+            </label>
+          </div>
         </div>
+
+        {/* Submit Button */}
         <div className="flex items-center justify-center">
           <button
             type="submit"
@@ -114,4 +158,3 @@ const TaskForm: React.FC<TaskFormProps> = ({
 };
 
 export default TaskForm;
-
