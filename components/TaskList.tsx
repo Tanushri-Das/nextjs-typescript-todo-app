@@ -122,7 +122,7 @@ const TaskList: React.FC = () => {
             ></textarea>
           </div>
           <div className="mb-4">
-            <label htmlFor="editStatus" className="block font-medium text-xl mb-2">
+            <label htmlFor="editStatus" className="block font-medium text-xl mb-3">
               Status
             </label>
             <div>
