@@ -1,0 +1,34 @@
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    width: 400px;
+    max-height: 90%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+  }
+  
+  .modal_after-open {
+    outline: none;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .overlay_after-open {
+    outline: none;
+  }
+
+  
