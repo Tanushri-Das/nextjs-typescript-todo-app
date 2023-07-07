@@ -271,7 +271,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
         </div>
 
         {/* Status */}
-        <div className="mb-4">
+        <div className="mb-5">
           <label htmlFor="status" className="block text-gray-700 text-sm font-bold mb-2">
             Status
           </label>
@@ -328,4 +328,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
 };
 
 export default TaskForm;
+
+
+
 
