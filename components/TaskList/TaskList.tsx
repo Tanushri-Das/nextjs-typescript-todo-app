@@ -44,12 +44,11 @@ const TaskList: React.FC = () => {
 
   const handleDelete = (taskId: string) => {
     taskStore.deleteTask(taskId);
-
-    // Remove task from local storage
-    const updatedTasks = storedTasks.filter((task) => task.id !== taskId);
-    setStoredTasks(updatedTasks);
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+  
+    // Update tasks in local storage
+    localStorage.setItem("tasks", JSON.stringify(taskStore.tasks));
   };
+  
 
   const handleEdit = (
     taskId: string,

@@ -1,5 +1,4 @@
-
-import { types, applySnapshot, IModelType, IMSTArray, Instance } from 'mobx-state-tree';
+import { types, applySnapshot, IModelType, Instance } from 'mobx-state-tree';
 
 interface Task {
   id: string;
@@ -21,7 +20,7 @@ const TaskModel = types
     },
   }));
 
-const TaskStore = types
+  const TaskStore = types
   .model('TaskStore', {
     tasks: types.array(TaskModel),
   })
@@ -44,13 +43,14 @@ const TaskStore = types
     setTasks(tasks: Task[]) {
       const taskModels = tasks.map((task) => TaskModel.create(task));
       self.tasks.replace(taskModels);
-    },
+    }    
   }));
+
 
 export function createTaskStore() {
   let storedTasks: Task[] = [];
-  if (typeof window !== "undefined" && window.localStorage) {
-    const localStorageTasks = localStorage.getItem("tasks");
+  if (typeof window !== 'undefined' && window.localStorage) {
+    const localStorageTasks = localStorage.getItem('tasks');
     storedTasks = localStorageTasks ? JSON.parse(localStorageTasks) : [];
   }
 

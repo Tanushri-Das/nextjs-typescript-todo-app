@@ -1,12 +1,12 @@
 
 import React, { ReactNode } from "react";
 
-import Footer from "./Shared/Footer/Footer";
+import Footer from "../components/Shared/Footer/Footer";
 import { useRouter } from "next/router";
-import Navbar from "./Shared/Navbar/Navbar";
+import Navbar from "../components/Shared/Navbar/Navbar";
 
 interface LayoutProps {
-    children: ReactNode
+    children: ReactNode;
   }
 
 const Layout = ({children}: LayoutProps) => {
