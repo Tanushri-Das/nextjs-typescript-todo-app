@@ -5,7 +5,7 @@ import Footer from "../Shared/Footer/Footer";
 import { useRouter } from "next/router";
 
 interface LayoutProps {
-    children: ReactNode;
+    children: ReactNode
   }
 
 const Layout = ({children}: LayoutProps) => {
