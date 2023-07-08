@@ -144,7 +144,7 @@ const TaskList: React.FC = () => {
         overlayClassName={`${styles.overlay} ${styles.afterOpen} ${styles.beforeClose}`}
       >
         <div className="flex justify-between items-baseline">
-          <h2 className="font-semibold text-2xl mb-5">Edit Task</h2>
+          <h2 className="font-semibold text-2xl mb-4">Edit Task</h2>
           <button
             className="text-gray-500 hover:text-gray-800 focus:outline-none"
             onClick={() => setEditingTaskId("")}
@@ -153,46 +153,47 @@ const TaskList: React.FC = () => {
           </button>
         </div>
         <form onSubmit={() => handleUpdate(editingTaskId)}>
-          <div className="mb-4">
+          <div className="mb-2">
             <label
               htmlFor="editTitle"
-              className="block font-medium text-xl mb-2"
+              className="block font-medium text-lg mb-1"
             >
               Title
             </label>
-            <input
-              id="editTitle"
-              type="text"
-              value={editedTitle}
-              onChange={(e) => setEditedTitle(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
-            />
+            <textarea rows={4}
+            id="editTitle" required
+            placeholder="Title"
+            value={editedTitle}
+            onChange={(e) => setEditedTitle(e.target.value)}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          ></textarea>
+            
           </div>
-          <div className="mb-4">
+          <div className="mb-2">
             <label
               htmlFor="editDescription"
-              className="block font-medium text-xl mb-2"
+              className="block font-medium text-lg mb-1"
             >
               Description
             </label>
-            <textarea
+            <textarea rows={6} required
               id="editDescription"
               value={editedDescription}
               onChange={(e) => setEditedDescription(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
             ></textarea>
           </div>
-          <div className="mb-4">
+          <div className="mb-2">
             <label
               htmlFor="editStatus"
-              className="block font-medium text-xl mb-3"
+              className="block font-medium text-xl mb-1"
             >
               Status
             </label>
             <div>
               <label>
                 <input
-                  type="radio"
+                  type="radio" required
                   name="editStatus"
                   value="To Do"
                   checked={editedStatus === "To Do"}
@@ -203,7 +204,7 @@ const TaskList: React.FC = () => {
             </div>
             <div>
               <label>
-                <input
+                <input required
                   type="radio"
                   name="editStatus"
                   value="In Progress"
@@ -216,7 +217,7 @@ const TaskList: React.FC = () => {
             <div>
               <label>
                 <input
-                  type="radio"
+                  type="radio" required
                   name="editStatus"
                   value="Completed"
                   checked={editedStatus === "Completed"}
