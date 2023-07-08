@@ -7,7 +7,7 @@ const Navbar = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // Close the menu when the route changes
+    // Close the menu when route changes
     setIsMenuOpen(false);
   }, [router.asPath]);
 

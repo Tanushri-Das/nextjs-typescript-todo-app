@@ -1,5 +1,5 @@
 
-import Layout from "../components/Layout/layout";
+import Layout from "@@/components/Layout/layout";
 import "@@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Toaster } from "react-hot-toast";
