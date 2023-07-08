@@ -1,13 +1,23 @@
-import React from 'react';
-import TaskList from '../components/TaskList';
-import TaskForm from '../components/TaskForm';
+
+import Navbar from "@@/components/Shared/Navbar/Navbar";
+import dynamic from "next/dynamic";
+
+const DynamicTaskList = dynamic(() => import("../components/TaskList"), {
+  ssr: false,
+});
+
+const DynamicTaskForm = dynamic(() => import("../components/TaskForm"), {
+  ssr: false,
+});
 
 const HomePage: React.FC = () => {
   return (
     <div className='mb-32'>
-      <h1 className='text-center mt-9 mb-6 text-2xl font-semibold'>Task Management Application</h1>
-      <TaskForm />
-      <TaskList />
+      <Navbar/>
+      <div>
+        <DynamicTaskForm />
+        <DynamicTaskList />
+      </div>
     </div>
   );
 };
