@@ -114,7 +114,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
 
   return (
     <div>
-      <h1 className="text-center mt-7 mb-2 text-2xl font-semibold">Add Your Task</h1>
+      <h1 className="text-center mt-8 mb-2 text-2xl font-semibold">Add Your Task</h1>
       <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto shadow-lg rounded-lg p-8">
         {/* Title */}
         <div className="mb-2">
