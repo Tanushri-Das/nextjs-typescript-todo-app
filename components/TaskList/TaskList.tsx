@@ -1,12 +1,11 @@
 
 import React, { useState, useEffect } from "react";
 import { useObserver } from "mobx-react-lite";
-import { useTaskStore } from "../models/TaskModel";
+import { useTaskStore } from "../../models/TaskModel";
 import Modal from "react-modal";
 import styles from "@@/styles/Styles.module.css";
 import { FaTimes } from "react-icons/fa";
-import Spinner from "./Spinner/Spinner";
-
+import Spinner from "../Spinner/Spinner";
 
 interface Task {
   id: string;

@@ -1,11 +1,11 @@
 
 import dynamic from "next/dynamic";
 
-const DynamicTaskList = dynamic(() => import("../components/TaskList"), {
+const DynamicTaskList = dynamic(() => import("../components/TaskList/TaskList"), {
   ssr: false,
 });
 
-const DynamicTaskForm = dynamic(() => import("../components/TaskForm"), {
+const DynamicTaskForm = dynamic(() => import("../components/TaskForm/TaskForm"), {
   ssr: false,
 });
 

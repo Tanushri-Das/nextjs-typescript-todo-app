@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useTaskStore } from "../models/TaskModel";
+import { useTaskStore } from "../../models/TaskModel";
 import { toast } from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -21,6 +21,10 @@ const TaskForm: React.FC<TaskFormProps> = ({
   const [description, setDescription] = useState(task?.description || propDescription || "");
   const [status, setStatus] = useState<string>(task?.status || "");
 
+  const [titleError, setTitleError] = useState<string>("");
+  const [descriptionError, setDescriptionError] = useState<string>("");
+  const [statusError, setStatusError] = useState<string>("");
+
   useEffect(() => {
     if (task) {
       setStatus(task.status);
@@ -40,8 +44,39 @@ const TaskForm: React.FC<TaskFormProps> = ({
     setStatus(newStatus);
   };
 
+  const validateForm = () => {
+    let isValid = true;
+
+    if (title.trim() === "") {
+      setTitleError("Title is required");
+      isValid = false;
+    } else {
+      setTitleError("");
+    }
+
+    if (description.trim() === "") {
+      setDescriptionError("Description is required");
+      isValid = false;
+    } else {
+      setDescriptionError("");
+    }
+
+    if (status === "") {
+      setStatusError("Status is required");
+      isValid = false;
+    } else {
+      setStatusError("");
+    }
+
+    return isValid;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
 
     const id = taskId || uuidv4();
     const newTask = {
@@ -72,7 +107,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
       ? tasks.map((task: any) => (task.id === taskId ? newTask : task))
       : [...tasks, newTask];
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-    
+
     // Show toast success message
     toast.success("Task added successfully!");
   };
@@ -87,12 +122,14 @@ const TaskForm: React.FC<TaskFormProps> = ({
             Title
           </label>
           <textarea
-            id="title" required rows={3}
+            id="title"
+            rows={3}
             placeholder="Title"
             value={title}
             onChange={handleTitleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${titleError ? 'border-red-500' : ''}`}
           ></textarea>
+          {titleError && <p className="text-red-500 text-[15px] font-bold">{titleError}</p>}
         </div>
 
         {/* Description */}
@@ -103,13 +140,15 @@ const TaskForm: React.FC<TaskFormProps> = ({
           >
             Description
           </label>
-          <textarea rows={5}
+          <textarea
+            rows={5}
             id="description"
             placeholder="Description"
             value={description}
             onChange={handleDescriptionChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${descriptionError ? 'border-red-500' : ''}`}
           ></textarea>
+          {descriptionError && <p className="text-red-500 font-bold text-[15px]">{descriptionError}</p>}
         </div>
 
         {/* Status */}
@@ -120,7 +159,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
           <div>
             <label>
               <input
-                type="radio" required
+                type="radio"
                 name="status"
                 value="To Do"
                 checked={status === "To Do"}
@@ -131,7 +170,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
           </div>
           <div>
             <label>
-              <input required
+              <input
                 type="radio"
                 name="status"
                 value="In Progress"
@@ -143,7 +182,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
           </div>
           <div>
             <label>
-              <input required
+              <input
                 type="radio"
                 name="status"
                 value="Completed"
@@ -153,6 +192,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
               <span className="ml-2">Completed</span>
             </label>
           </div>
+          {statusError && <p className="text-red-500 text-[15px] font-bold mt-1">{statusError}</p>}
         </div>
 
         {/* Submit Button */}

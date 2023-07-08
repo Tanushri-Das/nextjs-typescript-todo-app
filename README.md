@@ -16,7 +16,7 @@ This is a task management application built with Next.js ,Typescript and MobX.
 5. Open your browser and visit `http://localhost:3000`
 
 ## Live Website
-The application is deployed and can be accessed at [Live Website](https://www.example.com)
+The application is deployed and can be accessed at [https://melodic-speculoos-add1f6.netlify.app/](https://melodic-speculoos-add1f6.netlify.app/)
 
 ## Features
 
@@ -80,7 +80,7 @@ The tasks will be stored in the local storage of the browser, allowing them to p
 
 5. Once I was satisfied with the changes on the "feature-xyz" branch, I pushed the branch to the remote repository using `git push origin feature-xyz`.
 
-6. On the GitHub , I created a pull request, selecting the "feature-xyz" branch as the source branch and the main branch as the target branch (e.g., `master` or `main`).
+6. On GitHub , I created a pull request, selecting the "feature-xyz" branch as the source branch and the main branch as the target branch (e.g., `master` or `main`).
 
 7. I provided a clear title and description for the pull request, explaining the changes I had made and their purpose.
 
