@@ -1,7 +1,7 @@
-
 import React, { useState, useEffect } from "react";
 import { useTaskStore } from "../models/TaskModel";
 import { toast } from 'react-hot-toast';
+import { v4 as uuidv4 } from 'uuid';
 
 interface TaskFormProps {
   taskId?: string;
@@ -43,7 +43,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const id = taskId || Math.random().toString(36).substring(7);
+    const id = taskId || uuidv4();
     const newTask = {
       id,
       title,
@@ -72,8 +72,9 @@ const TaskForm: React.FC<TaskFormProps> = ({
       ? tasks.map((task: any) => (task.id === taskId ? newTask : task))
       : [...tasks, newTask];
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-        // Show toast success message
-        toast.success("Task added successfully!");
+    
+    // Show toast success message
+    toast.success("Task added successfully!");
   };
 
   return (
@@ -85,7 +86,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
           <label htmlFor="title" className="block text-gray-700 text-lg font-bold mb-2">
             Title
           </label>
-          <textarea rows={4}
+          <textarea
             id="title" required
             placeholder="Title"
             value={title}
@@ -102,7 +103,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
           >
             Description
           </label>
-          <textarea rows={6} required
+          <textarea
             id="description"
             placeholder="Description"
             value={description}
