@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    // Close the menu when the route changes
+    setIsMenuOpen(false);
+  }, [router.asPath]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useTaskStore } from "../models/TaskModel";
+import { toast } from 'react-hot-toast';
 
 interface TaskFormProps {
   taskId?: string;
@@ -71,6 +72,8 @@ const TaskForm: React.FC<TaskFormProps> = ({
       ? tasks.map((task: any) => (task.id === taskId ? newTask : task))
       : [...tasks, newTask];
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+        // Show toast success message
+        toast.success("Task added successfully!");
   };
 
   return (
