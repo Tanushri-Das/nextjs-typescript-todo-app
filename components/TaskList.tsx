@@ -171,7 +171,7 @@ const TaskList: React.FC = () => {
             >
               Title
             </label>
-            <textarea rows={4}
+            <textarea rows={3}
             id="editTitle" required
             placeholder="Title"
             value={editedTitle}
@@ -187,7 +187,7 @@ const TaskList: React.FC = () => {
             >
               Description
             </label>
-            <textarea rows={6} required
+            <textarea rows={5} required
               id="editDescription"
               value={editedDescription}
               onChange={(e) => setEditedDescription(e.target.value)}

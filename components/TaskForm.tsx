@@ -87,7 +87,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
             Title
           </label>
           <textarea
-            id="title" required
+            id="title" required rows={3}
             placeholder="Title"
             value={title}
             onChange={handleTitleChange}
@@ -103,7 +103,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
           >
             Description
           </label>
-          <textarea
+          <textarea rows={5}
             id="description"
             placeholder="Description"
             value={description}
