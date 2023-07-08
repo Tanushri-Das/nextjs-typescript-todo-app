@@ -8,7 +8,7 @@ This is a task management application built with Next.js and MobX.
 - Node.js and npm should be installed on your machine.
 
 ### Steps
-1. Clone the repository: `git clone <repository-url>`
+1. Clone the repository: `git clone <https://github.com/Tanushri-Das/nextjs-typescript-todo-app>`
 2. Navigate to the project directory: `cd task-management-app`
 3. Install dependencies: `npm install`
 4. Start the development server: `npm run dev`
