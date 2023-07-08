@@ -1,4 +1,5 @@
 
+import Footer from "@@/components/Shared/Footer/Footer";
 import Navbar from "@@/components/Shared/Navbar/Navbar";
 import dynamic from "next/dynamic";
 
@@ -12,12 +13,13 @@ const DynamicTaskForm = dynamic(() => import("../components/TaskForm"), {
 
 const HomePage: React.FC = () => {
   return (
-    <div className='mb-32'>
+    <div>
       <Navbar/>
       <div>
         <DynamicTaskForm />
         <DynamicTaskList />
       </div>
+      <Footer/>
     </div>
   );
 };
