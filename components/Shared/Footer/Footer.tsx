@@ -2,9 +2,9 @@ import React from "react";
 import { FaFacebook, FaLinkedin, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
-  const date = new Date().getFullYear()
+  const date = new Date().getFullYear();
   return (
-    <footer className="bg-blue-900 py-5">
+    <footer className="bg-blue-800 py-5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-between">
           <p className="text-xl text-white text-center md:text-start mb-4 md:mb-0">

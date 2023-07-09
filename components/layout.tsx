@@ -1,6 +1,5 @@
 
 import React, { ReactNode } from "react";
-
 import Footer from "../components/Shared/Footer/Footer";
 import { useRouter } from "next/router";
 import Navbar from "../components/Shared/Navbar/Navbar";

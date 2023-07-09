@@ -6,17 +6,17 @@ This is a task management application built with Next.js ,Typescript and MobX.
 ## Local Development
 
 ### Prerequisites
-- Node.js and npm should be installed on your machine.
+- Node.js and npm should be installed on my machine.
 
 ### Steps
 1. Clone the repository:git clone [https://github.com/Tanushri-Das/nextjs-typescript-todo-app.git](https://github.com/Tanushri-Das/nextjs-typescript-todo-app.git)
 2. Navigate to the project directory: `cd nextjs-typescript-todo-app`
 3. Install dependencies: `npm install`
 4. Start the development server: `npm run dev`
-5. Open your browser and visit `http://localhost:3000`
+5. Open my browser and visit `http://localhost:3000`
 
 ## Live Website
-The application is deployed and can be accessed at [https://melodic-speculoos-add1f6.netlify.app/](https://melodic-speculoos-add1f6.netlify.app/)
+The application is deployed and can be accessed at [https://meek-biscochitos-e66f54.netlify.app/](https://meek-biscochitos-e66f54.netlify.app/)
 
 ## Features
 
@@ -27,7 +27,7 @@ The application is deployed and can be accessed at [https://melodic-speculoos-ad
 - Responsive design
 
 
-4. Open your browser and visit `http://localhost:3000` to access the application.
+4. Open my browser and visit `http://localhost:3000` to access the application.
 
 ## Components
 

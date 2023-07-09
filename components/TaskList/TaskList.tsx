@@ -243,7 +243,7 @@ const TaskList: React.FC = () => {
           >
             Update task
           </button>
-        </form>{" "}
+        </form>
       </Modal>
     </div>
   ));

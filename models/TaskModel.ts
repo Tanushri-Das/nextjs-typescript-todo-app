@@ -1,4 +1,4 @@
-import { types, applySnapshot, IModelType, Instance } from 'mobx-state-tree';
+import { types, applySnapshot, Instance } from 'mobx-state-tree';
 
 interface Task {
   id: string;
