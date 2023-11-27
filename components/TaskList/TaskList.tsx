@@ -91,8 +91,8 @@ const TaskList: React.FC = () => {
 
   return useObserver(() => (
     <div className="">
-      <h1 className="text-center mt-16 mb-12 text-2xl font-semibold">View All Task</h1>
-      <div>
+      <h1 className="text-center mt-16 mb-10 text-2xl font-semibold">View All Task</h1>
+      <div className="mb-40">
         {loading ? (
           <Spinner/> // Render the spinner while data is loading
         ) : (

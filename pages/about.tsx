@@ -1,11 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-const about = () => {
+const About = () => {
   return (
-    <div className='text-center my-24'>
-        <h3 className='text-xl'>Task Management Applications About Page </h3>
+    <div className='flex justify-center items-center mt-60'>
+      <h3 className='text-2xl font-semibold'>
+        Task Management Applications About Page
+      </h3>
     </div>
-  )
-}
+  );
+};
 
-export default about
+export default About;
